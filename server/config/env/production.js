@@ -4,10 +4,10 @@ module.exports = {
     env: 'production',
     host: 'godong9.com',
     port: 3000,
-    secret: 'clip_secret',
+    secret: 'wanted_secret',
     mongo: {
         uri: 'mongodb://localhost/',
-        db: 'clip',
+        db: 'wanted',
         username: '',
         password: ''
     },

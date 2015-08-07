@@ -1,0 +1,22 @@
+{
+  "name": "wanted-server",
+  "version": "1.0.0",
+  "description": "Wanted Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/godong9/wanted-server.git"
+  },
+  "author": "godong9",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/godong9/wanted-server.git/issues"
+  },
+  "homepage": "https://github.com/godong9/wanted-server.git",
+  "dependencies": {
+    "express": "^4.12.4"
+  }
+}

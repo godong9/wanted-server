@@ -32,9 +32,9 @@ UserSchema.statics.saveUser = function(doc, callback) {
     if (!doc) return;
     doc.createDate = doc.createDate ? doc.createDate : new Date();
 
-    this.findOne({ name: doc.name }, function(err, doc) {
+    this.findOne({ name: doc.name }, function(err, user) {
         if (err) return callback(err);
-        if (doc && doc.name) return callback('already exist user');
+        if (user && user.name) return callback('already exist user');
         self.create(doc, callback);
     });
 };

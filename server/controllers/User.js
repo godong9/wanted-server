@@ -9,7 +9,8 @@ function UserCtrl() {
 
 UserCtrl.getAllUsers = function(req, res) {
     User.getUsers({}, function(err, docs) {
-       res.status(200).send(Result.SUCCESS(docs));
+        if (err) return res.status(400).send(Result.ERROR(err));
+        res.status(200).send(Result.SUCCESS(docs));
     });
 };
 
@@ -21,7 +22,7 @@ UserCtrl.getUser = function(req, res) {
     criteria = { _id: req.params.id };
     User.getUser(criteria, function(err, doc) {
         if (err) return res.status(400).send(Result.ERROR(err));
-        if (!doc) return res.status(400).send(Result.ERROR(errors));
+        if (!doc) return res.status(400).send(Result.ERROR('not exist user'));
         res.status(200).send(Result.SUCCESS(doc));
     });
 };
@@ -57,7 +58,7 @@ UserCtrl.loginUser = function(req, res) {
     User.getUser(criteria, function(err, doc) {
         if (err) return res.status(400).send(Result.ERROR(err));
         if (!doc) return res.status(400).send(Result.ERROR('fail'));
-        res.status(200).send(Result.SUCCESS('success'));
+        res.status(200).send(Result.SUCCESS(doc));
     });
 };
 

@@ -35,7 +35,7 @@ FileCtrl.run = function (req, res) {
     busboy.on('finish', function () {
         res.set('Content-type', 'text/html; charset=utf-8');
         res.writeHead(200, { 'Connection': 'close' });
-        res.write(JSON.stringify(savedFileName));
+        res.write(JSON.stringify(Result.SUCCESS(savedFileName)));
         res.end();
     });
     return req.pipe(busboy);

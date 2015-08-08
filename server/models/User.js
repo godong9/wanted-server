@@ -29,9 +29,13 @@ UserSchema.statics.getUsers = function(criteria, projection, options, callback) 
 
 UserSchema.statics.saveUser = function(doc, callback) {
     if (!doc) return;
-
     doc.createDate = doc.createDate ? doc.createDate : new Date();
-    this.create(doc, callback);
+
+    this.findOne({ name: doc.name }, function(err, doc) {
+        if (err) return callback(err);
+        if (doc.name) return callback('already exist user');
+        this.create(doc, callback);
+    });
 };
 
 module.exports = mongoose.model('User', UserSchema);

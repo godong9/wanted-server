@@ -8,11 +8,11 @@ var mongoose = require('mongoose'),
 var ItemSchema = new Schema({
     userId: { type: String, required: true }, // 등록한 유저 id
     itemImgUrl: { type: String, default: '' }, // 등록한 사진 URL
-    category: { type: Number, required: true }, // 1(애완동물), 2(분실물)
+    category: { type: Number, required: true }, // 1: 애완동물, 2: 분실물
     name: { type: String, required: true }, // 분실물 이름
     detail: { type: String, default: '' }, // 추가 설명
     phone: { type: String, default: '' }, // 연락처
-    location: { // 분실 지역
+    location: { // 분실한 위치
         city: String, // 도시
         loc: {} // 위치 정보
     },

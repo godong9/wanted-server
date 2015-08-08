@@ -35,5 +35,32 @@ ItemCtrl.getItems = function(req, res) {
     });
 };
 
+ItemCtrl.saveItem = function(req, res) {
+    var errors, doc;
+    req.checkBody('userId', 'Invalid userId').notEmpty();
+    req.checkBody('itemImgUrl', 'Invalid itemImgUrl').notEmpty();
+    req.checkBody('category', 'Invalid category').notEmpty();
+    req.checkBody('name', 'Invalid name').notEmpty();
+    req.checkBody('detail', 'Invalid detail').notEmpty();
+    req.checkBody('phone', 'Invalid phone').notEmpty();
+    req.checkBody('location.lat', 'Invalid location.lat').notEmpty();
+    req.checkBody('location.lng', 'Invalid location.lng').notEmpty();
+    req.checkBody('lostDate', 'Invalid lostDate').notEmpty();
+    errors = req.validationErrors();
+    doc = {
+        userId: req.body.userId,
+        itemImgUrl: req.body.itemImgUrl,
+        category: req.body.category,
+        name: req.body.name,
+        detail: req.body.detail,
+        phone: req.body.phone,
+        location: req.body.location,
+        lostDate: req.body.lostDate
+    };
+    Item.saveItem(doc, function(err, doc) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        res.status(200).send(Result.SUCCESS(doc));
+    });
+};
 
 module.exports = ItemCtrl;

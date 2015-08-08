@@ -16,7 +16,7 @@ module.exports = {
             {
                 "type": "dateFile",
                 "absolute": true,
-                "filename": "/logs/server.log",
+                "filename": "/data/log/wanted/server.log",
                 "pattern":"-yyyy-MM-dd",
                 "alwaysIncludePattern": true
             }

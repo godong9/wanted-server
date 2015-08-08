@@ -23,26 +23,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "pageTitle": "files",
         "title": "files"
       },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "URL: /file",
-            "slug": "url-file"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "TYPE: POST",
-            "slug": "type-post"
-          },
-          "depth": 3
-        }
-      ]
+      "depth": 1
     }, {
       "type": "file",
       "data": {
@@ -99,6 +80,22 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 3,
+            "title": "URL: /item/id/:id",
+            "slug": "url-itemidid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: GET",
+            "slug": "type-get"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
             "title": "URL: /item/save",
             "slug": "url-itemsave"
           },
@@ -131,74 +128,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "pageTitle": "users",
         "title": "users"
       },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "URL: /user/all",
-            "slug": "url-userall"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "TYPE: GET",
-            "slug": "type-get"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "URL: /user/id/:id",
-            "slug": "url-useridid"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "TYPE: GET",
-            "slug": "type-get"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "URL: /user/save",
-            "slug": "url-usersave"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "TYPE: POST",
-            "slug": "type-post"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "URL: /user/login",
-            "slug": "url-userlogin"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "TYPE: POST",
-            "slug": "type-post"
-          },
-          "depth": 3
-        }
-      ]
+      "depth": 1
     }
   ];
 

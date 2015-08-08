@@ -4,6 +4,8 @@ var path = require('path');
 var fs = require('fs');
 var Busboy = require('busboy');
 
+var FILE_PREFIX = '/upload/';
+
 function FileCtrl() {
 
 }
@@ -35,7 +37,7 @@ FileCtrl.run = function (req, res) {
     busboy.on('finish', function () {
         res.set('Content-type', 'text/html; charset=utf-8');
         res.writeHead(200, { 'Connection': 'close' });
-        res.write(JSON.stringify(Result.SUCCESS(savedFileName)));
+        res.write(JSON.stringify(Result.SUCCESS(FILE_PREFIX + savedFileName)));
         res.end();
     });
     return req.pipe(busboy);

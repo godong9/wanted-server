@@ -9,7 +9,7 @@ var UserSchema = new Schema({
     authType: { type: String, required: true }, // 인증타입
     authKey: { type: String, required: true }, // 인증키
     name: { type: String, required: true }, // 닉네임
-    profileUrl: { type: String, default: '' }, // 프로필 이미지 주소
+    profileImgUrl: { type: String, default: '' }, // 프로필 이미지 URL
     createDate: { type: Date, required: true } // 생성 시간
 }, { collection: 'user' });
 

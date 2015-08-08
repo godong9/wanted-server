@@ -34,7 +34,9 @@ router.get('/all', itemCtrl.getAllItems);
  * @example
  *  REQUEST
  *   - GET /item/list?pageNum=0&perPage=10&location={%22lat%22:37.497942,%22lng%22:127.02762099999995}
+ *   - GET /item/list?pageNum=0&perPage=10&address=강남역
  *  RESPONSE
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"55c5999b6115baa609372b19","category":1,"name":"뽀삐(치와와)","lostDate":"2015-08-08T00:00:00.000Z","location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"itemImgUrl":"/upload/1438999692440_gd.png"}]}
  *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"55c5999b6115baa609372b19","category":1,"name":"뽀삐(치와와)","lostDate":"2015-08-08T00:00:00.000Z","location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"itemImgUrl":"/upload/1438999692440_gd.png"}]}
  */
 router.get('/list', itemCtrl.getItems);

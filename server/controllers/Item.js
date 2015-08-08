@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
 var Item = mongoose.model('Item');
 var Result = require('../services/Result');
+var GoogleApi = require('../services/GoogleApi');
 var async = require('async');
+var _ = require('underscore');
+var log4js = require('log4js');
+var logger = log4js.getLogger("ItemCtrl");
 
 function ItemCtrl() {
 
@@ -16,31 +20,65 @@ ItemCtrl.getAllItems = function(req, res) {
 
 ItemCtrl.getItems = function(req, res) {
     var errors, criteria, projection, options;
-    req.query.location = JSON.parse(req.query.location);
-    req.checkQuery('location.lat', 'Invalid location.lat').notEmpty();
-    req.checkQuery('location.lng', 'Invalid location.lng').notEmpty();
     req.checkQuery('pageNum', 'Invalid pageNum').notEmpty();
     req.checkQuery('perPage', 'Invalid perPage').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(Result.ERROR(errors));
     criteria = {};
-    criteria["location.loc"]= {
-        $near : {
-            $geometry : {
-                type : "Point" ,
-                coordinates : [ req.query.location.lng, req.query.location.lat ]
+    if (!_.isUndefined(req.query.location)) {
+        req.query.location = JSON.parse(req.query.location);
+        criteria["location.loc"]= {
+            $near : {
+                $geometry : {
+                    type : "Point" ,
+                    coordinates : [ req.query.location.lng, req.query.location.lat ]
+                }
             }
-        }
-    };
+        };
+    }
     projection = { itemImgUrl:1, category:1, name:1, location:1, lostDate:1 };
     options = {
         skip: parseInt(req.query.pageNum) * parseInt(req.query.perPage),
         limit: parseInt(req.query.perPage)
     };
-    Item.getItems(criteria, projection, options, function(err, docs) {
+    async.waterfall([
+        function(callback) {
+            if (!_.isUndefined(req.query.address)) {
+                GoogleApi.getGeocode(req.query.address, function(err, locationInfo) {
+                    if (err) return callback(err);
+                    logger.debug("locationInfo: ", locationInfo);
+                    if (locationInfo.geo && locationInfo.geo.bounds) {
+                        var northEast = locationInfo.geo.bounds.northeast;
+                        var southWest = locationInfo.geo.bounds.southwest;
+                        var left = southWest.lat;
+                        var right = northEast.lat;
+                        var top = northEast.lng;
+                        var bottom = southWest.lng;
+                        criteria["locations.loc"] = {
+                            $geoWithin : {
+                                $geometry: {
+                                    type : "Polygon" ,
+                                    coordinates: [[[top,left],[top,right],[bottom,right],[bottom,left],[top,left]]]
+                                }
+                            }
+                        };
+                    }
+                    callback(null);
+                });
+            } else {
+                callback(null);
+            }
+        },
+        function(callback) {
+            Item.getItems(criteria, projection, options, function(err, docs) {
+                callback(err, docs);
+            });
+        }
+    ], function (err, result) {
         if (err) return res.status(400).send(Result.ERROR(err));
-        res.status(200).send(Result.SUCCESS(docs));
+        res.status(200).send(Result.SUCCESS(result));
     });
+
 };
 
 ItemCtrl.getItem = function(req, res) {

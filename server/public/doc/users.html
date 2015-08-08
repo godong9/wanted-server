@@ -5,7 +5,7 @@
 <ul>
 <li>테스트 위해 모든 유저 목록 가져오는 API</li>
 </ul>
-<h3 id="url-ajaxuserall">URL: /ajax/user/all</h3>
+<h3 id="url-userall">URL: /user/all</h3>
 <h3 id="type-get">TYPE: GET</h3>
 <p>Example:</p>
 <pre><code>REQUEST
@@ -14,14 +14,52 @@ RESPONSE
  - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;55c4dff156556a4108a1c63a&quot;,&quot;authType&quot;:&quot;phone&quot;,&quot;authKey&quot;:&quot;01055595552&quot;,&quot;name&quot;:&quot;godong&quot;,&quot;createDate&quot;:&quot;2015-08-07T16:42:25.396Z&quot;,&quot;__v&quot;:0,&quot;profileUrl&quot;:&quot;&quot;}]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/all'</span>, userCtrl.getAllUsers);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
 <h2 id="-get-user-"><strong>GET user</strong></h2>
 <ul>
-<li>유저 정보 가져오는 API</li>
+<li>유저의 _id로 유저 정보 가져오는 API</li>
 </ul>
-<h3 id="url-ajaxuserall">URL: /ajax/user/all</h3>
+<h3 id="url-useridid">URL: /user/id/:id</h3>
 <h3 id="type-get">TYPE: GET</h3>
 <p>Example:</p>
 <pre><code>REQUEST
- - GET /user/all
+ - GET /user/id/55c4dff156556a4108a1c63a
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;55c4dff156556a4108a1c63a&quot;,&quot;authType&quot;:&quot;phone&quot;,&quot;authKey&quot;:&quot;01055595552&quot;,&quot;name&quot;:&quot;godong&quot;,&quot;createDate&quot;:&quot;2015-08-07T16:42:25.396Z&quot;,&quot;__v&quot;:0,&quot;profileUrl&quot;:&quot;&quot;}]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/id/:id'</span>, userCtrl.getUser);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>POST save user </p></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, userCtrl.saveUser);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>POST login user </p></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/login'</span>, userCtrl.loginUser);
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;_id&quot;:&quot;55c4dff156556a4108a1c63a&quot;,&quot;authType&quot;:&quot;phone&quot;,&quot;authKey&quot;:&quot;01055595552&quot;,&quot;name&quot;:&quot;godong&quot;,&quot;createDate&quot;:&quot;2015-08-07T16:42:25.396Z&quot;,&quot;__v&quot;:0,&quot;profileUrl&quot;:&quot;&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/id/:id'</span>, userCtrl.getUser);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-post-user-save-"><strong>POST user save</strong></h2>
+<ul>
+<li>회원 가입 API</li>
+</ul>
+<h3 id="url-usersave">URL: /user/save</h3>
+<h3 id="type-post">TYPE: POST</h3>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>authType must be a String.</strong><br/>(- phone)</p>
+</li>
+<li><p><strong>authKey must be a String.</strong><br/>(- 핸드폰 번호)</p>
+</li>
+<li><p><strong>name must be a String.</strong><br/>(- 유저 이름)</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - POST /user/save { &quot;authType&quot;:&quot;phone&quot;, &quot;authKey&quot;:&quot;010-5559-5552&quot;, &quot;name&quot;:&quot;godong9&quot; }
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;authType&quot;:&quot;phone&quot;,&quot;authKey&quot;:&quot;010-5559-5552&quot;,&quot;name&quot;:&quot;godong9&quot;,&quot;createDate&quot;:&quot;2015-08-08T01:40:20.229Z&quot;,&quot;_id&quot;:&quot;55c55e045b3524fc02d35863&quot;,&quot;profileUrl&quot;:&quot;&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, userCtrl.saveUser);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-post-user-login-"><strong>POST user login</strong></h2>
+<ul>
+<li>로그인 API</li>
+</ul>
+<h3 id="url-userlogin">URL: /user/login</h3>
+<h3 id="type-post">TYPE: POST</h3>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>authType must be a String.</strong><br/>(- phone)</p>
+</li>
+<li><p><strong>authKey must be a String.</strong><br/>(- 핸드폰 번호)</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - POST /user/login { &quot;authType&quot;:&quot;phone&quot;, &quot;authKey&quot;:&quot;010-5559-5552&quot; }
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;_id&quot;:&quot;55c55e045b3524fc02d35863&quot;,&quot;authType&quot;:&quot;phone&quot;,&quot;authKey&quot;:&quot;010-5559-5552&quot;,&quot;name&quot;:&quot;godong9&quot;,&quot;createDate&quot;:&quot;2015-08-08T01:40:20.229Z&quot;,&quot;__v&quot;:0,&quot;profileUrl&quot;:&quot;&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/login'</span>, userCtrl.loginUser);
 
 <span class="hljs-built_in">module</span>.exports = router;</div></div></div></div></body></html>

@@ -23,7 +23,96 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "pageTitle": "files",
         "title": "files"
       },
-      "depth": 1
+      "depth": 1,
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /file",
+            "slug": "url-file"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: POST",
+            "slug": "type-post"
+          },
+          "depth": 3
+        }
+      ]
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "multiLineComment": ["/*", "*", "*/"],
+          "singleLineComment": ["//"],
+          "ignorePrefix": "}",
+          "foldPrefix": "^",
+          "name": "JavaScript"
+        },
+        "sourcePath": "/Users/godong/Desktop/Project/wanted-server/server/routes/items.js",
+        "projectPath": "/Users/godong/Desktop/Project/wanted-server/server/routes/items.js",
+        "targetPath": "items",
+        "pageTitle": "items",
+        "title": "items"
+      },
+      "depth": 1,
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /list/all",
+            "slug": "url-listall"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: GET",
+            "slug": "type-get"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /item/list",
+            "slug": "url-itemlist"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: GET",
+            "slug": "type-get"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /item/save",
+            "slug": "url-itemsave"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: POST",
+            "slug": "type-post"
+          },
+          "depth": 3
+        }
+      ]
     }, {
       "type": "file",
       "data": {
@@ -48,8 +137,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "URL: /ajax/user/all",
-            "slug": "url-ajaxuserall"
+            "title": "URL: /user/all",
+            "slug": "url-userall"
           },
           "depth": 3
         }, {
@@ -64,8 +153,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "URL: /ajax/user/all",
-            "slug": "url-ajaxuserall"
+            "title": "URL: /user/id/:id",
+            "slug": "url-useridid"
           },
           "depth": 3
         }, {
@@ -74,6 +163,38 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "level": 3,
             "title": "TYPE: GET",
             "slug": "type-get"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /user/save",
+            "slug": "url-usersave"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: POST",
+            "slug": "type-post"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /user/login",
+            "slug": "url-userlogin"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: POST",
+            "slug": "type-post"
           },
           "depth": 3
         }

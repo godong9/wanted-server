@@ -2,6 +2,21 @@
 <span class="hljs-keyword">var</span> router = express.Router();
 <span class="hljs-keyword">var</span> fileCtrl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../controllers/File'</span>);
 
-<span class="hljs-keyword">var</span> FILE_UPLOAD_LIMIT_SIZE = <span class="hljs-number">10</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>; <span class="hljs-comment">// 10mb</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>POST file upload *</p></div></div><div class="code"><div class="wrapper">router.route(<span class="hljs-string">'/'</span>).post(fileCtrl.checkFileSize(FILE_UPLOAD_LIMIT_SIZE), fileCtrl.run);
+<span class="hljs-keyword">var</span> FILE_UPLOAD_LIMIT_SIZE = <span class="hljs-number">10</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>; <span class="hljs-comment">// 10mb</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-post-file-upload-"><strong>POST file upload</strong></h2>
+<ul>
+<li>파일 업로드 API</li>
+</ul>
+<h3 id="url-file">URL: /file</h3>
+<h3 id="type-post">TYPE: POST</h3>
+<p>Parameters:</p>
+<ul>
+<li><strong>files must be a Multipart.</strong><br/>(- 파일 데이터)</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - POST /file
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:&quot;/upload/1438999692440_gd.png&quot;}</code></pre></div></div><div class="code"><div class="wrapper">router.route(<span class="hljs-string">'/'</span>).post(fileCtrl.checkFileSize(FILE_UPLOAD_LIMIT_SIZE), fileCtrl.run);
 
 <span class="hljs-built_in">module</span>.exports = router;</div></div></div></div></body></html>

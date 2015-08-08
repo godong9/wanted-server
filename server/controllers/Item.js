@@ -7,8 +7,16 @@ function ItemCtrl() {
 
 }
 
+ItemCtrl.getAllItems = function(req, res) {
+    Item.getItems({}, function(err, docs) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        res.status(200).send(Result.SUCCESS(docs));
+    });
+};
+
 ItemCtrl.getItems = function(req, res) {
     var errors, criteria, projection, options;
+    req.query.location = JSON.parse(req.query.location);
     req.checkQuery('location.lat', 'Invalid location.lat').notEmpty();
     req.checkQuery('location.lng', 'Invalid location.lng').notEmpty();
     req.checkQuery('pageNum', 'Invalid pageNum').notEmpty();
@@ -47,6 +55,7 @@ ItemCtrl.saveItem = function(req, res) {
     req.checkBody('location.lng', 'Invalid location.lng').notEmpty();
     req.checkBody('lostDate', 'Invalid lostDate').notEmpty();
     errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
     doc = {
         userId: req.body.userId,
         itemImgUrl: req.body.itemImgUrl,
@@ -54,7 +63,15 @@ ItemCtrl.saveItem = function(req, res) {
         name: req.body.name,
         detail: req.body.detail,
         phone: req.body.phone,
-        location: req.body.location,
+        location: {
+            loc: {
+                type: "Point",
+                coordinates: [
+                    req.body.location.lng,
+                    req.body.location.lat
+                ]
+            }
+        },
         lostDate: req.body.lostDate
     };
     Item.saveItem(doc, function(err, doc) {

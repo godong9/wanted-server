@@ -7,7 +7,7 @@ var userCtrl = require('../controllers/User');
  * ## **GET All users**
  *  - 테스트 위해 모든 유저 목록 가져오는 API
  *
- * ### URL: /ajax/user/all
+ * ### URL: /user/all
  * ### TYPE: GET
  *
  * @example

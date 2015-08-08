@@ -12,7 +12,7 @@ var FILE_UPLOAD_LIMIT_SIZE = 10 * 1024 * 1024; // 10mb
  * ### URL: /file
  * ### TYPE: POST
  *
- * @param {Form} 파일 데이터
+ * @param {Multipart} files - 파일 데이터
  *
  * @example
  *  REQUEST

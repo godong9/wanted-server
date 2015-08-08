@@ -36,6 +36,7 @@ ItemSchema.statics.getItem = function(criteria, projection, options, callback) {
 
 ItemSchema.statics.saveItem = function(doc, callback) {
     if (!doc) return;
+    doc.lostDate = doc.lostDate ? new Date(doc.lostDate) : new Date();
     doc.createDate = doc.createDate ? doc.createDate : new Date();
 
     this.create(doc, callback);

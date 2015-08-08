@@ -3,8 +3,9 @@ var async = require('async');
 var path = require('path');
 var fs = require('fs');
 var Busboy = require('busboy');
+var config = require('../config/config');
 
-var FILE_PREFIX = '/upload/';
+var FILE_PREFIX = config.imgPrefix+'/upload/';
 
 function FileCtrl() {
 

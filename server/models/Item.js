@@ -7,15 +7,20 @@ var mongoose = require('mongoose'),
  */
 var ItemSchema = new Schema({
     userId: { type: String, required: true }, // 등록한 유저 id
+    userName: { type: String, required: true }, // 등록한 유저 name
     itemImgUrl: { type: String, default: '' }, // 등록한 사진 URL
     category: { type: Number, required: true }, // 1: 애완동물, 2: 분실물
     name: { type: String, required: true }, // 분실물 이름
-    detail: { type: String, default: '' }, // 추가 설명
-    phone: { type: String, default: '' }, // 연락처
+    type: { type: String, required: true }, // 분실물 종류
+    cost: { type: String, required: true }, // 사례금
+    feature: { type: String, required: true }, // 특징
+    phone: { type: String, required: true }, // 연락처
     location: { // 분실한 위치
         city: String, // 도시
         loc: {} // 위치 정보
     },
+    detail1: { type: String, default: '' },
+    detail2: { type: String, default: '' },
     lostDate: { type: Date, required: true }, // 분실한 시간
     createDate: { type: Date, required: true } // 생성 시간
 }, { collection: 'item' });

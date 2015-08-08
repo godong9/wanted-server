@@ -18,7 +18,7 @@ var FILE_UPLOAD_LIMIT_SIZE = 10 * 1024 * 1024; // 10mb
  *  REQUEST
  *   - POST /file
  *  RESPONSE
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":"/upload/1438999692440_gd.png"}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":"http://localhost:3000/upload/1439046961238_gd.png"}
  */
 router.route('/').post(fileCtrl.checkFileSize(FILE_UPLOAD_LIMIT_SIZE), fileCtrl.run);
 

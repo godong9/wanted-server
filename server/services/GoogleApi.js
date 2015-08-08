@@ -37,7 +37,7 @@ GoogleApiService.getGeocode = function(address, callback) {
                 callback("no result", {});
             }
         } else {
-            callback(null, data);
+            callback(null, data.results[0]);
         }
     });
 };

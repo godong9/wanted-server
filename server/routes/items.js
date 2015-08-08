@@ -14,7 +14,7 @@ var itemCtrl = require('../controllers/Item');
  *  REQUEST
  *   - GET /item/all
  *  RESPONSE
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"55c5999b6115baa609372b19","userId":"55c55e045b3524fc02d35863","category":1,"name":"뽀삐(치와와)","lostDate":"2015-08-08T00:00:00.000Z","createDate":"2015-08-08T05:54:35.250Z","__v":0,"location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"phone":"godong9(카톡)","detail":"우리 뽀삐를 찾아주세요ㅠ","itemImgUrl":"/upload/1438999692440_gd.png"}]}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"55c62a78495ee34905ce51f2","userId":"55c55e045b3524fc02d35863","userName":"godong9","category":1,"name":"뽀삐","type":"강아지","cost":"10만원","feature":"잘 짖음","phone":"godong9(카톡)","lostDate":"2015-08-08T00:00:00.000Z","createDate":"2015-08-08T16:12:40.767Z","__v":0,"detail2":"성별은 수컷","detail1":"품종은 치와와","location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"itemImgUrl":"http://localhost:3000/upload/1438999692440_gd.png"}]}
  */
 router.get('/all', itemCtrl.getAllItems);
 
@@ -34,10 +34,12 @@ router.get('/all', itemCtrl.getAllItems);
  * @example
  *  REQUEST
  *   - GET /item/list?pageNum=0&perPage=10&location={%22lat%22:37.497942,%22lng%22:127.02762099999995}
- *   - GET /item/list?pageNum=0&perPage=10&address=강남역
+ *   - GET /item/list?pageNum=0&perPage=10&address=서울시
+ *   - GET /item/list?pageNum=0&perPage=10&address=부산시
  *  RESPONSE
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"55c5999b6115baa609372b19","category":1,"name":"뽀삐(치와와)","lostDate":"2015-08-08T00:00:00.000Z","location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"itemImgUrl":"/upload/1438999692440_gd.png"}]}
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"55c5999b6115baa609372b19","category":1,"name":"뽀삐(치와와)","lostDate":"2015-08-08T00:00:00.000Z","location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"itemImgUrl":"/upload/1438999692440_gd.png"}]}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"55c62a78495ee34905ce51f2","userName":"godong9","category":1,"name":"뽀삐","lostDate":"2015-08-08T00:00:00.000Z","location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"itemImgUrl":"http://localhost:3000/upload/1438999692440_gd.png"}]}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"55c62a78495ee34905ce51f2","userName":"godong9","category":1,"name":"뽀삐","lostDate":"2015-08-08T00:00:00.000Z","location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"itemImgUrl":"http://localhost:3000/upload/1438999692440_gd.png"}]}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[]}
  */
 router.get('/list', itemCtrl.getItems);
 
@@ -51,9 +53,9 @@ router.get('/list', itemCtrl.getItems);
  *
  * @example
  *  REQUEST
- *   - GET /item/id/55c5999b6115baa609372b19
+ *   - GET /item/id/55c62a78495ee34905ce51f2
  *  RESPONSE
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"_id":"55c5999b6115baa609372b19","userId":"55c55e045b3524fc02d35863","category":1,"name":"뽀삐(치와와)","lostDate":"2015-08-08T00:00:00.000Z","createDate":"2015-08-08T05:54:35.250Z","__v":0,"location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"phone":"godong9(카톡)","detail":"우리 뽀삐를 찾아주세요ㅠ","itemImgUrl":"/upload/1438999692440_gd.png"}}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"_id":"55c62a78495ee34905ce51f2","userId":"55c55e045b3524fc02d35863","userName":"godong9","category":1,"name":"뽀삐","type":"강아지","cost":"10만원","feature":"잘 짖음","phone":"godong9(카톡)","lostDate":"2015-08-08T00:00:00.000Z","createDate":"2015-08-08T16:12:40.767Z","__v":0,"detail2":"성별은 수컷","detail1":"품종은 치와와","location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"itemImgUrl":"http://localhost:3000/upload/1438999692440_gd.png"}}
  */
 router.get('/id/:id', itemCtrl.getItem);
 
@@ -66,19 +68,24 @@ router.get('/id/:id', itemCtrl.getItem);
  * ### TYPE: POST
  *
  * @param {String} userId: 유저 ID
+ * @param {String} userName: 유저 name
  * @param {String} itemImgUrl: 아이템 이미지 URL
- * @param {String} category: 아이템 카테고리 (1: 애완동물, 2: 분실물)
+ * @param {String} category: 아이템 카테고리 (1: 동물, 2: 분실물)
  * @param {String} name: 분실물 이름
- * @param {String} detail: 추가 설명
+ * @param {String} type: 분실물 종류
+ * @param {String} cost: 사례금
+ * @param {String} feature: 특징
  * @param {String} phone: 연락처
  * @param {String} location: 분실한 위치
+ * @param {String} detail1: 카테고리1일 때 성별, 카테고리2일 때 색상
+ * @param {String} detail2: 카테고리1일 때 품종, 카테고리2일 때 크기
  * @param {String} lostDate: 분실한 날짜 (2015-08-08)
  *
  * @example
  *  REQUEST
- *   - POST { "userId": "55c55e045b3524fc02d35863", "itemImgUrl": "/upload/1438999692440_gd.png", "category": 1, "name": "뽀삐(치와와)", "detail": "우리 뽀삐를 찾아주세요ㅠ", "phone": "godong9(카톡)", "location": {"lat":37.497942,"lng":127.02762099999995}, "lostDate": "2015-08-08" }
+ *   - POST { "userId":"55c55e045b3524fc02d35863", "userName": "godong9", "itemImgUrl": "http://localhost:3000/upload/1438999692440_gd.png", "category": 1, "name": "뽀삐", "type":"강아지", "cost":"10만원", "feature":"잘 짖음", "phone": "godong9(카톡)", "location": {"lat":37.497942,"lng":127.02762099999995}, "lostDate": "2015-08-08", "detail1": "품종은 치와와", "detail2":"성별은 수컷" }
  *  RESPONSE
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"__v":0,"userId":"55c55e045b3524fc02d35863","category":1,"name":"뽀삐(치와와)","lostDate":"2015-08-08T00:00:00.000Z","createDate":"2015-08-08T05:52:50.681Z","_id":"55c599326115baa609372b18","location":{"loc":{"coordinates":[127.02762099999995,37.497942],"type":"Point"}},"phone":"godong9(카톡)","detail":"우리 뽀삐를 찾아주세요ㅠ","itemImgUrl":"/upload/1438999692440_gd.png"}}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"__v":0,"userId":"55c55e045b3524fc02d35863","userName":"godong9","category":1,"name":"뽀삐","type":"강아지","cost":"10만원","feature":"잘 짖음","phone":"godong9(카톡)","lostDate":"2015-08-08T00:00:00.000Z","createDate":"2015-08-08T16:12:40.767Z","_id":"55c62a78495ee34905ce51f2","detail2":"성별은 수컷","detail1":"품종은 치와와","location":{"loc":{"coordinates":[127.02762099999995,37.497942],"type":"Point"}},"itemImgUrl":"http://localhost:3000/upload/1438999692440_gd.png"}}
  */
 router.post('/save', itemCtrl.saveItem);
 

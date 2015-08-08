@@ -36,7 +36,7 @@ ItemCtrl.getItems = function(req, res) {
             }
         };
     }
-    projection = { itemImgUrl:1, category:1, name:1, location:1, lostDate:1 };
+    projection = { userName:1, itemImgUrl:1, category:1, name:1, location:1, lostDate:1 };
     options = {
         skip: parseInt(req.query.pageNum) * parseInt(req.query.perPage),
         limit: parseInt(req.query.perPage)
@@ -46,15 +46,15 @@ ItemCtrl.getItems = function(req, res) {
             if (!_.isUndefined(req.query.address)) {
                 GoogleApi.getGeocode(req.query.address, function(err, locationInfo) {
                     if (err) return callback(err);
-                    logger.debug("locationInfo: ", locationInfo);
-                    if (locationInfo.geo && locationInfo.geo.bounds) {
-                        var northEast = locationInfo.geo.bounds.northeast;
-                        var southWest = locationInfo.geo.bounds.southwest;
+                    logger.debug("locationInfo.geometry.viewport: ", locationInfo.geometry.viewport);
+                    if (locationInfo.geometry && locationInfo.geometry.viewport) {
+                        var northEast = locationInfo.geometry.viewport.northeast;
+                        var southWest = locationInfo.geometry.viewport.southwest;
                         var left = southWest.lat;
                         var right = northEast.lat;
                         var top = northEast.lng;
                         var bottom = southWest.lng;
-                        criteria["locations.loc"] = {
+                        criteria["location.loc"] = {
                             $geoWithin : {
                                 $geometry: {
                                     type : "Polygon" ,
@@ -62,8 +62,10 @@ ItemCtrl.getItems = function(req, res) {
                                 }
                             }
                         };
+                        callback(null);
+                    } else {
+                        callback("invalid location");
                     }
-                    callback(null);
                 });
             } else {
                 callback(null);
@@ -75,6 +77,8 @@ ItemCtrl.getItems = function(req, res) {
             });
         }
     ], function (err, result) {
+        logger.debug(err);
+        if (err === "invalid location") return res.status(200).send(Result.SUCCESS([]));
         if (err) return res.status(400).send(Result.ERROR(err));
         res.status(200).send(Result.SUCCESS(result));
     });
@@ -95,11 +99,15 @@ ItemCtrl.getItem = function(req, res) {
 
 ItemCtrl.saveItem = function(req, res) {
     var errors, doc;
+    console.log(req.body);
     req.checkBody('userId', 'Invalid userId').notEmpty();
+    req.checkBody('userName', 'Invalid userName').notEmpty();
     req.checkBody('itemImgUrl', 'Invalid itemImgUrl').notEmpty();
     req.checkBody('category', 'Invalid category').notEmpty();
     req.checkBody('name', 'Invalid name').notEmpty();
-    req.checkBody('detail', 'Invalid detail').notEmpty();
+    req.checkBody('type', 'Invalid type').notEmpty();
+    req.checkBody('cost', 'Invalid cost').notEmpty();
+    req.checkBody('feature', 'Invalid feature').notEmpty();
     req.checkBody('phone', 'Invalid phone').notEmpty();
     req.checkBody('location.lat', 'Invalid location.lat').notEmpty();
     req.checkBody('location.lng', 'Invalid location.lng').notEmpty();
@@ -108,10 +116,13 @@ ItemCtrl.saveItem = function(req, res) {
     if (errors) return res.status(400).send(Result.ERROR(errors));
     doc = {
         userId: req.body.userId,
+        userName: req.body.userName,
         itemImgUrl: req.body.itemImgUrl,
         category: req.body.category,
         name: req.body.name,
-        detail: req.body.detail,
+        type: req.body.type,
+        cost: req.body.cost,
+        feature: req.body.feature,
         phone: req.body.phone,
         location: {
             loc: {
@@ -124,6 +135,8 @@ ItemCtrl.saveItem = function(req, res) {
         },
         lostDate: req.body.lostDate
     };
+    if (req.body.detail1) doc.detail1 = req.body.detail1;
+    if (req.body.detail2) doc.detail2 = req.body.detail2;
     Item.saveItem(doc, function(err, doc) {
         if (err) return res.status(400).send(Result.ERROR(err));
         res.status(200).send(Result.SUCCESS(doc));

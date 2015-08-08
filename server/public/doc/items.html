@@ -11,7 +11,7 @@
 <pre><code>REQUEST
  - GET /item/all
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;55c5999b6115baa609372b19&quot;,&quot;userId&quot;:&quot;55c55e045b3524fc02d35863&quot;,&quot;category&quot;:1,&quot;name&quot;:&quot;뽀삐(치와와)&quot;,&quot;lostDate&quot;:&quot;2015-08-08T00:00:00.000Z&quot;,&quot;createDate&quot;:&quot;2015-08-08T05:54:35.250Z&quot;,&quot;__v&quot;:0,&quot;location&quot;:{&quot;loc&quot;:{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[127.02762099999995,37.497942]}},&quot;phone&quot;:&quot;godong9(카톡)&quot;,&quot;detail&quot;:&quot;우리 뽀삐를 찾아주세요ㅠ&quot;,&quot;itemImgUrl&quot;:&quot;/upload/1438999692440_gd.png&quot;}]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/all'</span>, itemCtrl.getAllItems);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;55c62a78495ee34905ce51f2&quot;,&quot;userId&quot;:&quot;55c55e045b3524fc02d35863&quot;,&quot;userName&quot;:&quot;godong9&quot;,&quot;category&quot;:1,&quot;name&quot;:&quot;뽀삐&quot;,&quot;type&quot;:&quot;강아지&quot;,&quot;cost&quot;:&quot;10만원&quot;,&quot;feature&quot;:&quot;잘 짖음&quot;,&quot;phone&quot;:&quot;godong9(카톡)&quot;,&quot;lostDate&quot;:&quot;2015-08-08T00:00:00.000Z&quot;,&quot;createDate&quot;:&quot;2015-08-08T16:12:40.767Z&quot;,&quot;__v&quot;:0,&quot;detail2&quot;:&quot;성별은 수컷&quot;,&quot;detail1&quot;:&quot;품종은 치와와&quot;,&quot;location&quot;:{&quot;loc&quot;:{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[127.02762099999995,37.497942]}},&quot;itemImgUrl&quot;:&quot;http://localhost:3000/upload/1438999692440_gd.png&quot;}]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/all'</span>, itemCtrl.getAllItems);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
 <h2 id="-get-items-"><strong>GET items</strong></h2>
 <ul>
 <li>현재 위치 주변 item 목록 가져오는 API</li>
@@ -33,10 +33,12 @@ RESPONSE
 <p>Example:</p>
 <pre><code>REQUEST
  - GET /item/list?pageNum=0&amp;perPage=10&amp;location={%22lat%22:37.497942,%22lng%22:127.02762099999995}
- - GET /item/list?pageNum=0&amp;perPage=10&amp;address=강남역
+ - GET /item/list?pageNum=0&amp;perPage=10&amp;address=서울시
+ - GET /item/list?pageNum=0&amp;perPage=10&amp;address=부산시
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;55c5999b6115baa609372b19&quot;,&quot;category&quot;:1,&quot;name&quot;:&quot;뽀삐(치와와)&quot;,&quot;lostDate&quot;:&quot;2015-08-08T00:00:00.000Z&quot;,&quot;location&quot;:{&quot;loc&quot;:{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[127.02762099999995,37.497942]}},&quot;itemImgUrl&quot;:&quot;/upload/1438999692440_gd.png&quot;}]}
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;55c5999b6115baa609372b19&quot;,&quot;category&quot;:1,&quot;name&quot;:&quot;뽀삐(치와와)&quot;,&quot;lostDate&quot;:&quot;2015-08-08T00:00:00.000Z&quot;,&quot;location&quot;:{&quot;loc&quot;:{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[127.02762099999995,37.497942]}},&quot;itemImgUrl&quot;:&quot;/upload/1438999692440_gd.png&quot;}]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/list'</span>, itemCtrl.getItems);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;55c62a78495ee34905ce51f2&quot;,&quot;userName&quot;:&quot;godong9&quot;,&quot;category&quot;:1,&quot;name&quot;:&quot;뽀삐&quot;,&quot;lostDate&quot;:&quot;2015-08-08T00:00:00.000Z&quot;,&quot;location&quot;:{&quot;loc&quot;:{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[127.02762099999995,37.497942]}},&quot;itemImgUrl&quot;:&quot;http://localhost:3000/upload/1438999692440_gd.png&quot;}]}
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;55c62a78495ee34905ce51f2&quot;,&quot;userName&quot;:&quot;godong9&quot;,&quot;category&quot;:1,&quot;name&quot;:&quot;뽀삐&quot;,&quot;lostDate&quot;:&quot;2015-08-08T00:00:00.000Z&quot;,&quot;location&quot;:{&quot;loc&quot;:{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[127.02762099999995,37.497942]}},&quot;itemImgUrl&quot;:&quot;http://localhost:3000/upload/1438999692440_gd.png&quot;}]}
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/list'</span>, itemCtrl.getItems);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
 <h2 id="-get-item-"><strong>GET item</strong></h2>
 <ul>
 <li>id로 item 상세 정보 가져오는 API</li>
@@ -45,9 +47,9 @@ RESPONSE
 <h3 id="type-get">TYPE: GET</h3>
 <p>Example:</p>
 <pre><code>REQUEST
- - GET /item/id/55c5999b6115baa609372b19
+ - GET /item/id/55c62a78495ee34905ce51f2
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;_id&quot;:&quot;55c5999b6115baa609372b19&quot;,&quot;userId&quot;:&quot;55c55e045b3524fc02d35863&quot;,&quot;category&quot;:1,&quot;name&quot;:&quot;뽀삐(치와와)&quot;,&quot;lostDate&quot;:&quot;2015-08-08T00:00:00.000Z&quot;,&quot;createDate&quot;:&quot;2015-08-08T05:54:35.250Z&quot;,&quot;__v&quot;:0,&quot;location&quot;:{&quot;loc&quot;:{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[127.02762099999995,37.497942]}},&quot;phone&quot;:&quot;godong9(카톡)&quot;,&quot;detail&quot;:&quot;우리 뽀삐를 찾아주세요ㅠ&quot;,&quot;itemImgUrl&quot;:&quot;/upload/1438999692440_gd.png&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/id/:id'</span>, itemCtrl.getItem);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;_id&quot;:&quot;55c62a78495ee34905ce51f2&quot;,&quot;userId&quot;:&quot;55c55e045b3524fc02d35863&quot;,&quot;userName&quot;:&quot;godong9&quot;,&quot;category&quot;:1,&quot;name&quot;:&quot;뽀삐&quot;,&quot;type&quot;:&quot;강아지&quot;,&quot;cost&quot;:&quot;10만원&quot;,&quot;feature&quot;:&quot;잘 짖음&quot;,&quot;phone&quot;:&quot;godong9(카톡)&quot;,&quot;lostDate&quot;:&quot;2015-08-08T00:00:00.000Z&quot;,&quot;createDate&quot;:&quot;2015-08-08T16:12:40.767Z&quot;,&quot;__v&quot;:0,&quot;detail2&quot;:&quot;성별은 수컷&quot;,&quot;detail1&quot;:&quot;품종은 치와와&quot;,&quot;location&quot;:{&quot;loc&quot;:{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[127.02762099999995,37.497942]}},&quot;itemImgUrl&quot;:&quot;http://localhost:3000/upload/1438999692440_gd.png&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/id/:id'</span>, itemCtrl.getItem);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
 <h2 id="-post-save-item-"><strong>POST save item</strong></h2>
 <ul>
 <li>item 저장하는 API</li>
@@ -58,26 +60,36 @@ RESPONSE
 <ul>
 <li><p><strong>userId must be a String.</strong><br/>(: 유저 ID)</p>
 </li>
+<li><p><strong>userName must be a String.</strong><br/>(: 유저 name)</p>
+</li>
 <li><p><strong>itemImgUrl must be a String.</strong><br/>(: 아이템 이미지 URL)</p>
 </li>
-<li><p><strong>category must be a String.</strong><br/>(: 아이템 카테고리 (1: 애완동물, 2: 분실물))</p>
+<li><p><strong>category must be a String.</strong><br/>(: 아이템 카테고리 (1: 동물, 2: 분실물))</p>
 </li>
 <li><p><strong>name must be a String.</strong><br/>(: 분실물 이름)</p>
 </li>
-<li><p><strong>detail must be a String.</strong><br/>(: 추가 설명)</p>
+<li><p><strong>type must be a String.</strong><br/>(: 분실물 종류)</p>
+</li>
+<li><p><strong>cost must be a String.</strong><br/>(: 사례금)</p>
+</li>
+<li><p><strong>feature must be a String.</strong><br/>(: 특징)</p>
 </li>
 <li><p><strong>phone must be a String.</strong><br/>(: 연락처)</p>
 </li>
 <li><p><strong>location must be a String.</strong><br/>(: 분실한 위치)</p>
+</li>
+<li><p><strong>detail1 must be a String.</strong><br/>(: 카테고리1일 때 성별, 카테고리2일 때 색상)</p>
+</li>
+<li><p><strong>detail2 must be a String.</strong><br/>(: 카테고리1일 때 품종, 카테고리2일 때 크기)</p>
 </li>
 <li><p><strong>lostDate must be a String.</strong><br/>(: 분실한 날짜 (2015-08-08))</p>
 </li>
 </ul>
 <p>Example:</p>
 <pre><code>REQUEST
- - POST { &quot;userId&quot;: &quot;55c55e045b3524fc02d35863&quot;, &quot;itemImgUrl&quot;: &quot;/upload/1438999692440_gd.png&quot;, &quot;category&quot;: 1, &quot;name&quot;: &quot;뽀삐(치와와)&quot;, &quot;detail&quot;: &quot;우리 뽀삐를 찾아주세요ㅠ&quot;, &quot;phone&quot;: &quot;godong9(카톡)&quot;, &quot;location&quot;: {&quot;lat&quot;:37.497942,&quot;lng&quot;:127.02762099999995}, &quot;lostDate&quot;: &quot;2015-08-08&quot; }
+ - POST { &quot;userId&quot;:&quot;55c55e045b3524fc02d35863&quot;, &quot;userName&quot;: &quot;godong9&quot;, &quot;itemImgUrl&quot;: &quot;http://localhost:3000/upload/1438999692440_gd.png&quot;, &quot;category&quot;: 1, &quot;name&quot;: &quot;뽀삐&quot;, &quot;type&quot;:&quot;강아지&quot;, &quot;cost&quot;:&quot;10만원&quot;, &quot;feature&quot;:&quot;잘 짖음&quot;, &quot;phone&quot;: &quot;godong9(카톡)&quot;, &quot;location&quot;: {&quot;lat&quot;:37.497942,&quot;lng&quot;:127.02762099999995}, &quot;lostDate&quot;: &quot;2015-08-08&quot;, &quot;detail1&quot;: &quot;품종은 치와와&quot;, &quot;detail2&quot;:&quot;성별은 수컷&quot; }
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;userId&quot;:&quot;55c55e045b3524fc02d35863&quot;,&quot;category&quot;:1,&quot;name&quot;:&quot;뽀삐(치와와)&quot;,&quot;lostDate&quot;:&quot;2015-08-08T00:00:00.000Z&quot;,&quot;createDate&quot;:&quot;2015-08-08T05:52:50.681Z&quot;,&quot;_id&quot;:&quot;55c599326115baa609372b18&quot;,&quot;location&quot;:{&quot;loc&quot;:{&quot;coordinates&quot;:[127.02762099999995,37.497942],&quot;type&quot;:&quot;Point&quot;}},&quot;phone&quot;:&quot;godong9(카톡)&quot;,&quot;detail&quot;:&quot;우리 뽀삐를 찾아주세요ㅠ&quot;,&quot;itemImgUrl&quot;:&quot;/upload/1438999692440_gd.png&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, itemCtrl.saveItem);
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;userId&quot;:&quot;55c55e045b3524fc02d35863&quot;,&quot;userName&quot;:&quot;godong9&quot;,&quot;category&quot;:1,&quot;name&quot;:&quot;뽀삐&quot;,&quot;type&quot;:&quot;강아지&quot;,&quot;cost&quot;:&quot;10만원&quot;,&quot;feature&quot;:&quot;잘 짖음&quot;,&quot;phone&quot;:&quot;godong9(카톡)&quot;,&quot;lostDate&quot;:&quot;2015-08-08T00:00:00.000Z&quot;,&quot;createDate&quot;:&quot;2015-08-08T16:12:40.767Z&quot;,&quot;_id&quot;:&quot;55c62a78495ee34905ce51f2&quot;,&quot;detail2&quot;:&quot;성별은 수컷&quot;,&quot;detail1&quot;:&quot;품종은 치와와&quot;,&quot;location&quot;:{&quot;loc&quot;:{&quot;coordinates&quot;:[127.02762099999995,37.497942],&quot;type&quot;:&quot;Point&quot;}},&quot;itemImgUrl&quot;:&quot;http://localhost:3000/upload/1438999692440_gd.png&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, itemCtrl.saveItem);
 
 
 <span class="hljs-built_in">module</span>.exports = router;</div></div></div></div></body></html>

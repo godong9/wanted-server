@@ -43,6 +43,18 @@ ItemCtrl.getItems = function(req, res) {
     });
 };
 
+ItemCtrl.getItem = function(req, res) {
+    var errors, criteria;
+    req.checkParams('id', 'Invalid id').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(Result.ERROR(errors));
+    criteria = { _id: req.params.id };
+    Item.getItem(criteria, function(err, doc) {
+        if (err) return res.status(400).send(Result.ERROR(err));
+        res.status(200).send(Result.SUCCESS(doc));
+    });
+};
+
 ItemCtrl.saveItem = function(req, res) {
     var errors, doc;
     req.checkBody('userId', 'Invalid userId').notEmpty();

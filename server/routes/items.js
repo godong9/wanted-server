@@ -41,6 +41,22 @@ router.get('/list', itemCtrl.getItems);
 
 /**
  * ---------
+ * ## **GET item**
+ *  - id로 item 상세 정보 가져오는 API
+ *
+ * ### URL: /item/id/:id
+ * ### TYPE: GET
+ *
+ * @example
+ *  REQUEST
+ *   - GET /item/id/55c5999b6115baa609372b19
+ *  RESPONSE
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"_id":"55c5999b6115baa609372b19","userId":"55c55e045b3524fc02d35863","category":1,"name":"뽀삐(치와와)","lostDate":"2015-08-08T00:00:00.000Z","createDate":"2015-08-08T05:54:35.250Z","__v":0,"location":{"loc":{"type":"Point","coordinates":[127.02762099999995,37.497942]}},"phone":"godong9(카톡)","detail":"우리 뽀삐를 찾아주세요ㅠ","itemImgUrl":"/upload/1438999692440_gd.png"}}
+ */
+router.get('/id/:id', itemCtrl.getItem);
+
+/**
+ * ---------
  * ## **POST save item**
  *  - item 저장하는 API
  *

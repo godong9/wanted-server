@@ -28,13 +28,14 @@ UserSchema.statics.getUsers = function(criteria, projection, options, callback) 
 };
 
 UserSchema.statics.saveUser = function(doc, callback) {
+    var self = this;
     if (!doc) return;
     doc.createDate = doc.createDate ? doc.createDate : new Date();
 
     this.findOne({ name: doc.name }, function(err, doc) {
         if (err) return callback(err);
         if (doc && doc.name) return callback('already exist user');
-        this.create(doc, callback);
+        self.create(doc, callback);
     });
 };
 
